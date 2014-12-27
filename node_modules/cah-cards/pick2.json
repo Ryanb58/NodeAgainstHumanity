@@ -1,0 +1,597 @@
+{
+  "469": {
+    "id": 469,
+    "cardType": "Q",
+    "text": "And the Academy Award for _ goes to _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "480": {
+    "id": 480,
+    "cardType": "Q",
+    "text": "For my next trick, I will pull _ out of _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "482": {
+    "id": 482,
+    "cardType": "Q",
+    "text": "_ is a slippery slope that leads to _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "488": {
+    "id": 488,
+    "cardType": "Q",
+    "text": "What's the next superhero/sidekick duo?",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "489": {
+    "id": 489,
+    "cardType": "Q",
+    "text": "In M. Night Shyamalan's new movie, Bruce Willis discovers that _ had really been _ all along.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "496": {
+    "id": 496,
+    "cardType": "Q",
+    "text": "In a world ravaged by _, our only solace is _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "511": {
+    "id": 511,
+    "cardType": "Q",
+    "text": "Step 1: _.  Step 2: _.  Step 3: Profit.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "512": {
+    "id": 512,
+    "cardType": "Q",
+    "text": "Rumor has it that Vladimir Putin's favorite dish is _ stuffed with _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "521": {
+    "id": 521,
+    "cardType": "Q",
+    "text": "I never truly understood _ until I encountered _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "540": {
+    "id": 540,
+    "cardType": "Q",
+    "text": "Lifetime&reg; presents _, the story of _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "542": {
+    "id": 542,
+    "cardType": "Q",
+    "text": "When I was tripping on acid, _ turned into _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "543": {
+    "id": 543,
+    "cardType": "Q",
+    "text": "That's right, I killed _.  How, you ask?  _.",
+    "numAnswers": 2,
+    "expansion": "Base"
+  },
+  "631": {
+    "id": 631,
+    "cardType": "Q",
+    "text": "Dear Sir or Madam, We regret to inform you that the Office of _ has denied your request for _",
+    "numAnswers": 2,
+    "expansion": "CAHe1"
+  },
+  "637": {
+    "id": 637,
+    "cardType": "Q",
+    "text": "An international tribunal has found _ guilty of _.",
+    "numAnswers": 2,
+    "expansion": "CAHe1"
+  },
+  "644": {
+    "id": 644,
+    "cardType": "Q",
+    "text": "In a pinch, _ can be a suitable substitute for _.",
+    "numAnswers": 2,
+    "expansion": "CAHe1"
+  },
+  "646": {
+    "id": 646,
+    "cardType": "Q",
+    "text": "Michael Bay's new three-hour action epic pits _ against _.",
+    "numAnswers": 2,
+    "expansion": "CAHe1"
+  },
+  "725": {
+    "id": 725,
+    "cardType": "Q",
+    "text": "_ would be woefully incomplete without _.",
+    "numAnswers": 2,
+    "expansion": "CAHe2"
+  },
+  "731": {
+    "id": 731,
+    "cardType": "Q",
+    "text": "My mom freaked out when she looked at my browser history and found _.com/_.",
+    "numAnswers": 2,
+    "expansion": "CAHe2"
+  },
+  "736": {
+    "id": 736,
+    "cardType": "Q",
+    "text": "If God didn't want us to enjoy _, he wouldn't have given us _.",
+    "numAnswers": 2,
+    "expansion": "CAHe2"
+  },
+  "739": {
+    "id": 739,
+    "cardType": "Q",
+    "text": "I spent my whole life working toward _, only to have it ruined by _.",
+    "numAnswers": 2,
+    "expansion": "CAHe2"
+  },
+  "746": {
+    "id": 746,
+    "cardType": "Q",
+    "text": "Before _, all we had was _.",
+    "numAnswers": 2,
+    "expansion": "CAHe2"
+  },
+  "748": {
+    "id": 748,
+    "cardType": "Q",
+    "text": "You haven't truly lived until you've experienced _ and _ at the same time.",
+    "numAnswers": 2,
+    "expansion": "CAHe2"
+  },
+  "753": {
+    "id": 753,
+    "cardType": "Q",
+    "text": "Worst character concept ever: _, but with _.",
+    "numAnswers": 2,
+    "expansion": "CAHgrognards"
+  },
+  "769": {
+    "id": 769,
+    "cardType": "Q",
+    "text": "Elminster cast a potent _ spell and then had sex with _.",
+    "numAnswers": 2,
+    "expansion": "CAHgrognards"
+  },
+  "864": {
+    "id": 864,
+    "cardType": "Q",
+    "text": "I downloaded a doujin where _ got into _.",
+    "numAnswers": 2,
+    "expansion": "CAHweeaboo"
+  },
+  "867": {
+    "id": 867,
+    "cardType": "Q",
+    "text": "In the dubbed version they changed _ into _.",
+    "numAnswers": 2,
+    "expansion": "CAHweeaboo"
+  },
+  "876": {
+    "id": 876,
+    "cardType": "Q",
+    "text": "The _ of _ has left me in despair!",
+    "numAnswers": 2,
+    "expansion": "CAHweeaboo"
+  },
+  "1001": {
+    "id": 1001,
+    "cardType": "Q",
+    "text": "Tonights main event, _ vs. _.",
+    "numAnswers": 2,
+    "expansion": "NEIndy"
+  },
+  "1011": {
+    "id": 1011,
+    "cardType": "Q",
+    "text": "Instead of booking _, they should have booked _.",
+    "numAnswers": 2,
+    "expansion": "NEIndy"
+  },
+  "1013": {
+    "id": 1013,
+    "cardType": "Q",
+    "text": "They found _ in the dumpster behind _.",
+    "numAnswers": 2,
+    "expansion": "NEIndy"
+  },
+  "1023": {
+    "id": 1023,
+    "cardType": "Q",
+    "text": "He did _ with the _!?!",
+    "numAnswers": 2,
+    "expansion": "NEIndy"
+  },
+  "1143": {
+    "id": 1143,
+    "cardType": "Q",
+    "text": "My father gave his life fighting to protect _ from _.",
+    "numAnswers": 2,
+    "expansion": "NSFH"
+  },
+  "1145": {
+    "id": 1145,
+    "cardType": "Q",
+    "text": "_ sparked a city-wide riot that only ended with _.",
+    "numAnswers": 2,
+    "expansion": "NSFH"
+  },
+  "1151": {
+    "id": 1151,
+    "cardType": "Q",
+    "text": "The next US election will be fought on the key issues of _ against _.",
+    "numAnswers": 2,
+    "expansion": "NSFH"
+  },
+  "1156": {
+    "id": 1156,
+    "cardType": "Q",
+    "text": "David Icke's newest conspiracy theory states that _ caused _.",
+    "numAnswers": 2,
+    "expansion": "NSFH"
+  },
+  "1160": {
+    "id": 1160,
+    "cardType": "Q",
+    "text": "In college, our lecturer made us write a report comparing _ to _.",
+    "numAnswers": 2,
+    "expansion": "NSFH"
+  },
+  "1250": {
+    "id": 1250,
+    "cardType": "Q",
+    "text": "My life is ruled by a vicious cycle of _ and _.",
+    "numAnswers": 2,
+    "expansion": "CAHe3"
+  },
+  "1255": {
+    "id": 1255,
+    "cardType": "Q",
+    "text": "_: Hours of fun. Easy to use. Perfect for _!",
+    "numAnswers": 2,
+    "expansion": "CAHe3"
+  },
+  "1258": {
+    "id": 1258,
+    "cardType": "Q",
+    "text": "When you get right down to it, _ is just _.",
+    "numAnswers": 2,
+    "expansion": "CAHe3"
+  },
+  "1262": {
+    "id": 1262,
+    "cardType": "Q",
+    "text": "With enough time and pressure, _ will turn into _.",
+    "numAnswers": 2,
+    "expansion": "CAHe3"
+  },
+  "1266": {
+    "id": 1266,
+    "cardType": "Q",
+    "text": "After months of practice with _, I think I'm finally ready for _.",
+    "numAnswers": 2,
+    "expansion": "CAHe3"
+  },
+  "1270": {
+    "id": 1270,
+    "cardType": "Q",
+    "text": "Having problems with _? Try _!",
+    "numAnswers": 2,
+    "expansion": "CAHe3"
+  },
+  "1272": {
+    "id": 1272,
+    "cardType": "Q",
+    "text": "Listen, son. If you want to get involved with _, I won't stop you. Just steer clear of _.",
+    "numAnswers": 2,
+    "expansion": "CAHe3"
+  },
+  "1301": {
+    "id": 1301,
+    "cardType": "Q",
+    "text": "I just met you and this is crazy, but here's _, so _ maybe",
+    "numAnswers": 2,
+    "expansion": "Image1"
+  },
+  "1307": {
+    "id": 1307,
+    "cardType": "Q",
+    "text": "A _ a day keeps the _ away.",
+    "numAnswers": 2,
+    "expansion": "Image1"
+  },
+  "1309": {
+    "id": 1309,
+    "cardType": "Q",
+    "text": "I'm sweating like a _ at a _.",
+    "numAnswers": 2,
+    "expansion": "Image1"
+  },
+  "1318": {
+    "id": 1318,
+    "cardType": "Q",
+    "text": "So I was _ in my cubicle at work, and suddenly _!",
+    "numAnswers": 2,
+    "expansion": "Image1"
+  },
+  "1403": {
+    "id": 1403,
+    "cardType": "Q",
+    "text": "If Ned Stark had _, he never would have _.",
+    "numAnswers": 2,
+    "expansion": "GOT"
+  },
+  "1409": {
+    "id": 1409,
+    "cardType": "Q",
+    "text": "Because of _, Danerys was called _ by everyone.",
+    "numAnswers": 2,
+    "expansion": "GOT"
+  },
+  "1410": {
+    "id": 1410,
+    "cardType": "Q",
+    "text": "I will take what is mine with _ and _.",
+    "numAnswers": 2,
+    "expansion": "GOT"
+  },
+  "1412": {
+    "id": 1412,
+    "cardType": "Q",
+    "text": "In the next Game of Thrones book, George R. R. Martin said _ will _.",
+    "numAnswers": 2,
+    "expansion": "GOT"
+  },
+  "1413": {
+    "id": 1413,
+    "cardType": "Q",
+    "text": "All hail _! King of _!",
+    "numAnswers": 2,
+    "expansion": "GOT"
+  },
+  "1416": {
+    "id": 1416,
+    "cardType": "Q",
+    "text": "In the name of _, first of his _.",
+    "numAnswers": 2,
+    "expansion": "GOT"
+  },
+  "1419": {
+    "id": 1419,
+    "cardType": "Q",
+    "text": "The next Game of Thrones book will be titled _ of _.",
+    "numAnswers": 2,
+    "expansion": "GOT"
+  },
+  "1788": {
+    "id": 1788,
+    "cardType": "Q",
+    "text": "We should take _ and push it _.",
+    "numAnswers": 2,
+    "expansion": "HACK"
+  },
+  "1807": {
+    "id": 1807,
+    "cardType": "Q",
+    "text": "Next year's scavenger hunt is rumored to include finding a _ with a _.",
+    "numAnswers": 2,
+    "expansion": "HACK"
+  },
+  "1810": {
+    "id": 1810,
+    "cardType": "Q",
+    "text": "My _ brings all the _ to the yard.",
+    "numAnswers": 2,
+    "expansion": "HACK"
+  },
+  "1817": {
+    "id": 1817,
+    "cardType": "Q",
+    "text": "I'mma let you finish but _ is the best _ of all time.",
+    "numAnswers": 2,
+    "expansion": "HACK"
+  },
+  "1830": {
+    "id": 1830,
+    "cardType": "Q",
+    "text": "High Tech start-up company combines _ with _.",
+    "numAnswers": 2,
+    "expansion": "HACK"
+  },
+  "1833": {
+    "id": 1833,
+    "cardType": "Q",
+    "text": "Drink all the _. Hack all the _.",
+    "numAnswers": 2,
+    "expansion": "HACK"
+  },
+  "1925": {
+    "id": 1925,
+    "cardType": "Q",
+    "text": "Adventure. Romance. _. From Paramount Pictures, \"_.\"",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1930": {
+    "id": 1930,
+    "cardType": "Q",
+    "text": "Every step towards _ gets me a little bit closer to _.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1931": {
+    "id": 1931,
+    "cardType": "Q",
+    "text": "Forget everything you know about _, because now we've supercharged it with _!",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1932": {
+    "id": 1932,
+    "cardType": "Q",
+    "text": "Honey, I have a new role-play I want to try tonight! You can be _, and I'll be _.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1934": {
+    "id": 1934,
+    "cardType": "Q",
+    "text": "I am become _, destroyer of _!",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1937": {
+    "id": 1937,
+    "cardType": "Q",
+    "text": "If you can't handle _, you'd better stay away from _.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1938": {
+    "id": 1938,
+    "cardType": "Q",
+    "text": "In return for my soul, the Devil promised me _ but all I got was _.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1939": {
+    "id": 1939,
+    "cardType": "Q",
+    "text": "In the beginning there was _. And the Lord said, \"Let there be _.\"",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1942": {
+    "id": 1942,
+    "cardType": "Q",
+    "text": "Oprah's book of the month is \"_ For _: A Story of Hope\"",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1946": {
+    "id": 1946,
+    "cardType": "Q",
+    "text": "This year's hottest album is \"_\" by _.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1947": {
+    "id": 1947,
+    "cardType": "Q",
+    "text": "We never did find _, but along the way we sure learned a lot about _.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1951": {
+    "id": 1951,
+    "cardType": "Q",
+    "text": "_ may pass, but _ will last forever.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "1952": {
+    "id": 1952,
+    "cardType": "Q",
+    "text": "_ will never be the same after _.",
+    "numAnswers": 2,
+    "expansion": "CAHe4"
+  },
+  "2049": {
+    "id": 2049,
+    "cardType": "Q",
+    "text": "_ was sent to save _.",
+    "numAnswers": 2,
+    "expansion": "Gallifrey"
+  },
+  "2065": {
+    "id": 2065,
+    "cardType": "Q",
+    "text": "According to the Daleks, _ is better at _.",
+    "numAnswers": 2,
+    "expansion": "Gallifrey"
+  },
+  "2446": {
+    "id": 2446,
+    "cardType": "Q",
+    "text": "_ stays awake at night, crying over _.",
+    "numAnswers": 2,
+    "expansion": "Alternia"
+  },
+  "2467": {
+    "id": 2467,
+    "cardType": "Q",
+    "text": "Hussie died on his quest bed and rose as the fully realized _ of _.",
+    "numAnswers": 2,
+    "expansion": "Alternia"
+  },
+  "2468": {
+    "id": 2468,
+    "cardType": "Q",
+    "text": "Hussie unintentionally revealed that Homestuck will end with _ and _ consummating their relationship at last.",
+    "numAnswers": 2,
+    "expansion": "Alternia"
+  },
+  "2485": {
+    "id": 2485,
+    "cardType": "Q",
+    "text": "Nepeta’s secret OTP is _ with _.",
+    "numAnswers": 2,
+    "expansion": "Alternia"
+  },
+  "2486": {
+    "id": 2486,
+    "cardType": "Q",
+    "text": "Nobody was surprised to find _ under Jade’s skirt. The surprise was she used it for/on _.",
+    "numAnswers": 2,
+    "expansion": "Alternia"
+  },
+  "2499": {
+    "id": 2499,
+    "cardType": "Q",
+    "text": "Vriska roleplays _ with Terezi as _.",
+    "numAnswers": 2,
+    "expansion": "Alternia"
+  },
+  "2501": {
+    "id": 2501,
+    "cardType": "Q",
+    "text": "Wear  _. Be _.",
+    "numAnswers": 2,
+    "expansion": "Alternia"
+  },
+  "2514": {
+    "id": 2514,
+    "cardType": "Q",
+    "text": "Hey, Susie. I know your job is _ but can you just grab me _? Thanks.",
+    "numAnswers": 2,
+    "expansion": "Ladies Against Humanity"
+  },
+  "2527": {
+    "id": 2527,
+    "cardType": "Q",
+    "text": "This month in Cosmo: how to give your man _ at the expense of _.",
+    "numAnswers": 2,
+    "expansion": "Ladies Against Humanity"
+  },
+  "2556": {
+    "id": 2556,
+    "cardType": "Q",
+    "text": "Men are from _, women are from _.",
+    "numAnswers": 2,
+    "expansion": "Ladies Against Humanity"
+  }
+}

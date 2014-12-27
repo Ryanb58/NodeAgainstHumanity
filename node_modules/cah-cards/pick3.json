@@ -1,0 +1,51 @@
+{
+  "533": {
+    "id": 533,
+    "cardType": "Q",
+    "text": "Make a haiku.",
+    "numAnswers": 3,
+    "expansion": "Base"
+  },
+  "545": {
+    "id": 545,
+    "cardType": "Q",
+    "text": "_ + _ = _.",
+    "numAnswers": 3,
+    "expansion": "Base"
+  },
+  "732": {
+    "id": 732,
+    "cardType": "Q",
+    "text": "I went from _ to _, all thanks to _.",
+    "numAnswers": 3,
+    "expansion": "CAHe2"
+  },
+  "1161": {
+    "id": 1161,
+    "cardType": "Q",
+    "text": "In The Hangover part 3, those four guys have to deal with _, _, and _.",
+    "numAnswers": 3,
+    "expansion": "NSFH"
+  },
+  "1169": {
+    "id": 1169,
+    "cardType": "Q",
+    "text": "My three wishes will be for _, _, and _.",
+    "numAnswers": 3,
+    "expansion": "NSFH"
+  },
+  "1953": {
+    "id": 1953,
+    "cardType": "Q",
+    "text": "You guys, I saw this crazy movie last night. It opens on _, and then there's some stuff about _, and then it ends with _.",
+    "numAnswers": 3,
+    "expansion": "CAHe4"
+  },
+  "2459": {
+    "id": 2459,
+    "cardType": "Q",
+    "text": "Everybody out of the god damn way. You’ve got a heart full of _, a soul full of _, and a body full of _. (Draw two, play three)",
+    "numAnswers": 3,
+    "expansion": "Alternia"
+  }
+}

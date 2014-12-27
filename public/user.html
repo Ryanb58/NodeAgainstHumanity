@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>User</title>
+    <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
+  </head>
+  <body>
+    <form action="">
+      Name<input id="name" /><button>Join Game</button>
+    </form>
+    <strong>Cards:</strong>
+    <ul id="cardsInHand"></ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+var socket = io();
+
+$('form').submit(function(){
+    socket.emit('add:player',$('#name').val());
+    return false;
+});
+
+socket.on('list:players', function(players){
+    console.log('listing players..');
+
+    //Clear the list of users.
+    $('#onlineUsers').empty();
+
+    //Set header of the list.
+    $('#onlineUsers').append($('<li>').html("<h2>Players:</h2>"));
+
+    //Add the players to the list.
+    for(i = 0; i < players.length; i++)
+    {
+        $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + players[i].name + "</div>"));
+    }
+});
+
+socket.on('list:player', function(player){
+    $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + player.name + "</div>"));
+});
+
+socket.on('list:hand', function(hand){
+    for(i = 0; i < hand.length; i++)
+    {
+        $('#cardsInHand').append($('<li>').html("<div style=\'text-decoration: underline\'>" + hand[i].text + "</div>"));
+    }
+})
+
+</script>
+  </body>
+</html>
