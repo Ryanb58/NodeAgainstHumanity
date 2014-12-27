@@ -22,8 +22,8 @@ app.get('/', function(req, res) {
 });
 
 //Send the client user.
-app.get('/user', function(req, res) {
-    res.sendFile(__base + 'public/user.html');
+app.get('/player', function(req, res) {
+    res.sendFile(__base + 'public/player.html');
 });
 
 //Send the client host.
@@ -38,6 +38,8 @@ io.on('connection', function(socket) {
 
     console.log("Player connected");
 
+    /* Host Functions */
+
     socket.on('create:game', function() {
         console.log("Creating a game");
 
@@ -50,6 +52,36 @@ io.on('connection', function(socket) {
         //Emit the game info to the client.
         socket.emit('game:created', game.roomId);
     });
+
+    /* Player Functions */
+
+    socket.on('add:playerToGame', function(gameId, playerName){
+        console.log('Adding a player');
+
+        //Check to make sure game exists.
+        if(!(gameId in games))
+        {
+            //The game ID does not exist.
+            console.log("game id doesn't exist.");
+        }
+
+        //If game exits add player to the game.
+        games[gameId].addPlayer(playerName, socket);
+
+        //DEBUG HELPER:
+        console.log("Games Players: ");
+        var playerNames = games[gameId].getListOfPlayerNames();
+        for(i=0;i<playerNames.length;i++){
+            console.log(playerNames);
+        }
+
+        //Tell the client that they have been added to the game.
+
+
+
+    });
+
+    /* Admin Functions */
 
     //Get list of games.
     socket.on('get:games', function(){

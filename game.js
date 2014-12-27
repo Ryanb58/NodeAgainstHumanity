@@ -30,7 +30,7 @@ Game.prototype.addPlayer = function(username, socket)
     this.players[username] = socket;
 
     //Add them to the correct broadcast room.
-    this.players[username].join(this.roomId);
+    //this.players[username].join(this.roomId);
 }
 
 Game.prototype.removePlayer = function(player)
@@ -41,6 +41,12 @@ Game.prototype.removePlayer = function(player)
 Game.prototype.getListOfPlayers = function()
 {
     return this.players;
+}
+
+Game.prototype.getListOfPlayerNames = function()
+{
+    console.log(Object.keys(this.players));
+    return Object.keys(this.players);
 }
 
 

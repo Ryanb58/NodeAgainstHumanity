@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>User</title>
+    <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div id="joinGamePage">
+        <form action="">
+            Game Code<input id="code" />
+            First Name<input id="username" />
+            <button>Join Game</button>
+        </form>
+    </div>
+    <div id="cardsInHand">
+        <strong>Cards:</strong>
+        <ul id="cardsInHand"></ul>
+    </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+var socket = io();
+
+$('#joinGamePage form').submit(function(){
+    var code = $('#code').val();
+    var name = $('#name').val();
+    console.log(code + " " + name);
+    socket.emit('add:playerToGame',code ,name);
+    return false;
+});
+
+</script>
+  </body>
+</html>

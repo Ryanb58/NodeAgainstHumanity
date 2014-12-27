@@ -48,7 +48,8 @@ socket.on('list:games', function(games){
 
 $('#joinGame').click(function(){
     console.log("Joining a game");
-    socket.emit('join:game');
+    window.location = "/player";
+    //socket.emit('join:game');
     return false;
 });
 
