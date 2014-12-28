@@ -45,7 +45,7 @@ Game.prototype.getListOfPlayers = function()
 
 Game.prototype.getListOfPlayerNames = function()
 {
-    console.log(Object.keys(this.players));
+    //console.log(Object.keys(this.players));
     return Object.keys(this.players);
 }
 

@@ -22,9 +22,9 @@
 <script>
 var socket = io();
 
-$('#joinGamePage form').submit(function(){
+$('form').submit(function(){
     var code = $('#code').val();
-    var name = $('#name').val();
+    var name = $('#username').val();
     console.log(code + " " + name);
     socket.emit('add:playerToGame',code ,name);
     return false;
