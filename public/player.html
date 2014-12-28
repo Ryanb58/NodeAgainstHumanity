@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>User</title>
+    <title>Player - Node Against Humanity</title>
     <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
 </head>
 <body>
@@ -12,9 +12,9 @@
             <button>Join Game</button>
         </form>
     </div>
-    <div id="cardsInHand">
+    <div id="handPage">
         <strong>Cards:</strong>
-        <ul id="cardsInHand"></ul>
+        <ul id="myHand"></ul>
     </div>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -22,6 +22,7 @@
 <script>
 var socket = io();
 
+// User Interactions
 $('form').submit(function(){
     var code = $('#code').val();
     var name = $('#username').val();
@@ -29,6 +30,20 @@ $('form').submit(function(){
     socket.emit('add:playerToGame',code ,name);
     return false;
 });
+
+//Link socket actions to functions.
+socket.on('list:hand', updateCardsInHand);
+
+//FUnctions
+function updateCardsInHand(cards)
+{
+    //Empty the current cards.
+    $('#myHand').empty();
+
+    $.each(cards, function(){
+        $('#myHand').append('<li><strong>' + this.text + '</strong></li>');
+    })
+}
 
 </script>
   </body>

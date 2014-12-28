@@ -1,18 +1,40 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Host</title>
+<head>
+    <title>Host - Node Against Humanity</title>
     <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
-  </head>
-  <body>
-    <ul id="onlineUsers">
-        <li><strong>Users:</strong></li>
-    </ul>
+</head>
+<body>
+    <div id="gameIdPage">
+        <h2></h2>
+    </div>
+    <div id="onlineUsersPage">
+        <strong>Users:</strong>
+        <ul id="onlineUsers"></ul>
+    </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
 var socket = io();
+
+//Called initially.
+socket.emit('create:game');
+
+socket.on('game:created', function(roomId){
+    console.log("Room ID: " + roomId);
+    $('#gameIdPage h2').text(roomId);
+    socket.emit('get:games');
+});
+
+/*
+socket.on('list:games', function(games){
+    for(i = 0; i < games.length; i++)
+    {
+        $('#listOfGames ul').append($('<li>').html("<div style=\'text-decoration: underline\'>" + games[i] + "</div>"));
+    }
+});
+*/
 
 socket.on('list:players', function(players){
     console.log('listing players..');
@@ -26,7 +48,7 @@ socket.on('list:players', function(players){
     //Add the players to the list.
     for(i = 0; i < players.length; i++)
     {
-        $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + players[i].name + " : " + players[i].socketId + "</div>"));
+        $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + players[i] + "</div>"));
     }
 });
 

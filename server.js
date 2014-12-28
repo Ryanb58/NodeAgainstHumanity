@@ -77,6 +77,11 @@ io.on('connection', function(socket) {
         }
 
         //Tell the client that they have been added to the game.
+        var host = games[gameId].getHostSocket();
+        host.emit('list:players', playerNames);
+
+        //Send them their hand of cards.
+        socket.emit('list:hand', games[gameId].getPlayersHand(playerName));
 
     });
 

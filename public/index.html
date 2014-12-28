@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Host</title>
+        <title>Node Against Humanity</title>
         <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
     </head>
 <body>
@@ -10,38 +10,17 @@
         <button id="createGame">Create</button>
         <button id="joinGame">Join</button>
     </div>
-    <div id="gameIdPage">
-        <h2></h2>
-    </div>
-    <div id="listOfGames">
-        <ul></ul>
-    </div>
 
-<script src="/socket.io/socket.io.js"></script>
+<!--<script src="/socket.io/socket.io.js"></script>-->
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
-var socket = io();
 
 /* Create Game Logic */
 
 $('#createGame').click(function(){
     console.log("Creating a new game.");
-    //TODO: Go to host here
-    socket.emit('create:game');
-    return false;
-});
-
-socket.on('game:created', function(roomId){
-    console.log(roomId);
-    $('#gameIdPage h2').text(roomId);
-    socket.emit('get:games');
-});
-
-socket.on('list:games', function(games){
-    for(i = 0; i < games.length; i++)
-    {
-        $('#listOfGames ul').append($('<li>').html("<div style=\'text-decoration: underline\'>" + games[i] + "</div>"));
-    }
+    window.location = "/host";
+    //return false;
 });
 
 /* Join Game Logic */
@@ -50,7 +29,7 @@ $('#joinGame').click(function(){
     console.log("Joining a game");
     window.location = "/player";
     //socket.emit('join:game');
-    return false;
+    //return false;
 });
 
 </script>

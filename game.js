@@ -77,6 +77,10 @@ Game.prototype.getListOfPlayerNames = function()
     return Object.keys(this.players);
 }
 
+Game.prototype.getHostSocket = function(){
+    return this.host;
+}
+
 
 
 /* Deck Methods */
