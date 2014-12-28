@@ -72,12 +72,15 @@ io.on('connection', function(socket) {
         console.log("Games Players: ");
         var playerNames = games[gameId].getListOfPlayerNames();
         for(i=0;i<playerNames.length;i++){
-            console.log(playerNames);
+            console.log(playerNames[i] + ":");
+            for(j=0;j<games[gameId].hands[playerNames[i]];j++)
+            {
+                //var cards = ;
+                console.log(games[gameId].hands[playerNames[i]]);
+            }
         }
 
         //Tell the client that they have been added to the game.
-
-
 
     });
 
