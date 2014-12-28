@@ -160,7 +160,13 @@ Game.prototype.refillPlayersHand = function(username)
         this.hands[username].push(this.getRandomCardFromAnswerDeck());
     }
 
-    console.log(this.hands[username]);
+    //console.log(this.hands[username]);
+}
+
+//Return the cards the user has in their hand.
+Game.prototype.getPlayersHand = function(username)
+{
+    return this.hands[username];
 }
 
 
