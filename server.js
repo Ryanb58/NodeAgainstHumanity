@@ -51,9 +51,15 @@ io.on('connection', function(socket) {
 
         //Emit the game info to the client.
         socket.emit('game:created', game.roomId);
+
+        //console.log("Question Card: " + game.getQuestionCard().text);
+
+        //DEBUG: Show Current Question Card.
+        socket.emit('display:questionCard', game.getQuestionCard());
     });
 
     /* Player Functions */
+    //Probably have to submit the gameID of which you are in every request...
 
     socket.on('add:playerToGame', function(gameId, playerName){
         console.log('Adding a player');
@@ -63,6 +69,7 @@ io.on('connection', function(socket) {
         {
             //The game ID does not exist.
             console.log("game id doesn't exist.");
+            return;
         }
 
         //If game exits add player to the game.
@@ -85,6 +92,10 @@ io.on('connection', function(socket) {
 
     });
 
+    socket.on('submit:card', function(gameId, card){
+
+    });
+
     /* Admin Functions */
 
     //Get list of games.
@@ -95,6 +106,18 @@ io.on('connection', function(socket) {
     //Disconnect socket.
     socket.on('disconnect', function() {
         //Figure out how to check if it is a player, or a host that quits...
+        for(i=0;i<games.length;i++)
+        {
+            if(socket.id = games[i].host.id)
+            {
+                //Yes it was the host that disconnected...
+                //Delete their game and all the info in it.
+                delete games[i];
+            }
+        }
+
+        //Figure out how to know which player disconnected... from which game..
+        //then tell that game's host it was removed..
 
         //If a host disconnects then remove the game from games.
         console.log("Player disconnected");

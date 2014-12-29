@@ -14,35 +14,54 @@
     </div>
     <div id="handPage">
         <strong>Cards:</strong>
-        <ul id="myHand"></ul>
+        <ul id="myHand"><li><strong><a href="je">Yep</a></strong></li></ul>
     </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
 var socket = io();
+var gameId = undefined;
 
-// User Interactions
-$('form').submit(function(){
-    var code = $('#code').val();
-    var name = $('#username').val();
-    console.log(code + " " + name);
-    socket.emit('add:playerToGame',code ,name);
-    return false;
+$(document).ready(function() {
+    // User Interactions
+    $('form').submit(function(){
+        var code = $('#code').val();
+        var name = $('#username').val();
+        console.log(code + " " + name);
+        socket.emit('add:playerToGame',code ,name);
+        gameId = code;
+        return false;
+    });
+});
+
+//User selects a card to send.
+//Manipulate things that have already been manipulated on the DOM.
+$(document).on("click","#handPage #myHand li strong a", function(event){
+    event.preventDefault();
+    //Get the original URL.. which is actually the cards index in the array.
+
+    console.log("Card " + $(this).attr('href') + " clicked!");
+    //" + $(this).attr('href') + "
 });
 
 //Link socket actions to functions.
 socket.on('list:hand', updateCardsInHand);
-
 //FUnctions
 function updateCardsInHand(cards)
 {
     //Empty the current cards.
     $('#myHand').empty();
 
+    for(i=0;i<cards.length;i++)
+    {
+        $('#myHand').append('<li><strong><a href="'+ i +'">' + cards[i].text + '</a></strong></li>');
+    }
+/*
     $.each(cards, function(){
         $('#myHand').append('<li><strong>' + this.text + '</strong></li>');
     })
+*/
 }
 
 </script>

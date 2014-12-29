@@ -12,6 +12,15 @@
         <strong>Users:</strong>
         <ul id="onlineUsers"></ul>
     </div>
+    <div id="gameMasterPage">
+
+    </div>
+    <div  id="questionCardPage">
+
+    </div>
+    <div id="submittedCardsPage">
+        <ul id="submittedCards"></ul>
+    </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -42,9 +51,6 @@ socket.on('list:players', function(players){
     //Clear the list of users.
     $('#onlineUsers').empty();
 
-    //Set header of the list.
-    $('#onlineUsers').append($('<li>').html("<h2>Players:</h2>"));
-
     //Add the players to the list.
     for(i = 0; i < players.length; i++)
     {
@@ -52,8 +58,19 @@ socket.on('list:players', function(players){
     }
 });
 
-socket.on('list:player', function(player){
-    $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + player.name + "</div>"));
+socket.on('display:questionCard', function(card)
+{
+    console.log("Card: " + card);
+    console.log("Card Text: " + card.text);
+    $('#questionCardPage').html("Current Question Card: " + card.text);
+});
+
+socket.on('list:submittedCards', function(cards)
+{
+    for(i=0; i<cards.length;i++)
+    {
+        $('#submittedCardsPage #submittedCards').append($('<li>').html('Current Question Card: ' + card.text));
+    }
 });
 
 </script>

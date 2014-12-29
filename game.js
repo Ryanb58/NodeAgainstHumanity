@@ -4,10 +4,6 @@ var _ = require("lodash");
  * Class Names are capitalized.
  * Variables are lower camel case.
  * Fuctions are lower case.
-
- TODO:
-    Scores methods.
-
  */
 
 /*
@@ -23,22 +19,27 @@ var _ = require("lodash");
  *  -Key:Username
  *  -Value:score<Int>
  *
- * GM:
- *
- *
  */
 
 //Constructor
 function Game(socket){
+
+    //Populate deck instances of cards.
+    this.answerDeck = require('cah-cards/answers');
+    this.questionDeck = require('cah-cards/pick1');
+
+    //Game Properties
     this.roomId = ( Math.random() * 100000 ) | 0;
     this.host = socket;
     this.players = {};
     this.hands = {};
-    this.scores = {};
 
-    //This games instance of their decks.
-    this.answerDeck = require('cah-cards/answers');
-    this.questionDeck = require('cah-cards/pick1');
+    //TODO:
+    this.scores = {};
+    this.submittedCards = {};
+    //Username of the current game master.
+    this.gameMaster = "";
+    this.questionCard = this.getRandomCardFromQuestionDeck();
 
     //Add this socket to the correct roomId.
     this.host.join(this.roomId);
@@ -47,6 +48,12 @@ function Game(socket){
 /* Socket Methods */
 Game.prototype.addPlayer = function(username, socket)
 {
+    //Make the first person added to the game the initial gameMaster.
+    if(this.gameMaster != "")
+    {
+        this.gameMaster = username;
+    }
+
     //Add user to the list of players.
     this.players[username] = socket;
 
@@ -57,6 +64,21 @@ Game.prototype.addPlayer = function(username, socket)
 
     //Add them to the correct broadcast room.
     this.players[username].join(this.roomId);
+}
+
+Game.prototype.selectNewGameMaster = function()
+{
+    var listOfPlayers = this.getListOfPlayerNames();
+    var playerNumber = listOfPlayers.indexOf(this.gameMaster);
+    var oldGameMaster = this.gameMaster;
+
+    //Runs until it selects a Game Master that wasnt the same as the previous.
+    while(this.gameMaster == oldGameMaster)
+    {
+        //max(exclusive) min(inclusive) --> Math.floor(Math.random() * (max - min) + min);
+        playerNumber = Math.floor(Math.random() * listOfPlayers.length);
+        this.gameMaster = listOfPlayers[playerNumber];
+    }
 }
 
 Game.prototype.removePlayer = function(username)
@@ -82,12 +104,41 @@ Game.prototype.getHostSocket = function(){
 }
 
 
-
-/* Deck Methods */
+/* Card Methods */
 /*
     TODO:
         Look into making sure no redundant cards are picked... (setting the picked cards to undefined in the deck maybe?)
 */
+
+Game.prototype.renewQuestionCard = function()
+{
+    var newQCard = this.getRandomCardFromQuestionDeck();
+    this.questionCard = newQCard;
+}
+
+Game.prototype.getQuestionCard = function(card)
+{
+    return this.questionCard;
+}
+
+Game.prototype.getSubmittedCards = function()
+{
+    //Return a list of submitted cards.
+    return this.submittedCards;
+}
+
+Game.prototype.addSubmittedCard = function(card)
+{
+    this.submittedCards.push(card);
+}
+
+Game.prototype.clearSubmittedCards = function()
+{
+    for(i=0;i<this.submittedCards.length;i++)
+    {
+        this.submittedCards[i] = undefined;
+    }
+}
 
 Game.prototype.getRandomCardFromQuestionDeck = function()
 {
