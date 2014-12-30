@@ -104,17 +104,33 @@ io.on('connection', function(socket) {
             //Tell the host whom won the round!
             games[gameId].getHostSocket().emit('winning:player', winnerName);
 
+            //Clear the submitted Cards.
+            games[gameId].clearSubmittedCards();
+
             //then reset for new round.(make sure all hands are filled.)
             games[gameId].refillAllPlayersHands();
 
             //select a new question card.
             games[gameId].setNewQuestionCard();
+            //DEBUG: Show Current Question Card on host.
+            games[gameId].getHostSocket().emit('display:questionCard', games[gameId].getQuestionCard());
 
             //select a new game master.
             games[gameId].selectNewGameMaster();
 
-            //emit all the stuff to the clients.
+            //emit new scores and hands to all of the clients.
+            var playerNames = games[gameId].getListOfPlayerNames();
+            for(i=0;i<playerNames.length;i++)
+            {
+                ////If gamemaster then push the black card to them.
 
+                ////Else
+                //Emit the client's hand.
+                games[gameId].getPlayer(playerNames[i]).emit('list:hand', games[gameId].getPlayersHand(playerNames[i]));
+                //Also emit their score.
+            }
+
+            //Prevents the rest of the function from continuing.
             return;
         }
 

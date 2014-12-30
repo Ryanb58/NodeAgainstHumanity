@@ -79,6 +79,7 @@ Game.prototype.selectNewGameMaster = function()
         //max(exclusive) min(inclusive) --> Math.floor(Math.random() * (max - min) + min);
         playerNumber = Math.floor(Math.random() * listOfPlayers.length);
         this.gameMaster = listOfPlayers[playerNumber];
+        console.log("New GameMaster: " + listOfPlayers[playerNumber]);
     }
 }
 
@@ -161,9 +162,19 @@ Game.prototype.addSubmittedCard = function(card)
 
 Game.prototype.clearSubmittedCards = function()
 {
+/*
     for(i=0;i<this.submittedCards.length;i++)
     {
-        this.submittedCards[i] = undefined;
+        delete this.submittedCards[i];
+    }
+*/
+/*
+    delete this.submittedCards;
+    this.submittedCards = new Array();
+*/
+    //Source: http://stackoverflow.com/questions/1232040/empty-an-array-in-javascript
+    while(this.submittedCards.length > 0) {
+        this.submittedCards.pop();
     }
 }
 

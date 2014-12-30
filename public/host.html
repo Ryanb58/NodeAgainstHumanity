@@ -62,7 +62,7 @@ socket.on('display:questionCard', function(card)
 {
     console.log("Card: " + card);
     console.log("Card Text: " + card.text);
-    $('#questionCardPage').html("Current Question Card: " + card.text);
+    $('#questionCardPage').html("Question Card: " + card.text);
 });
 
 socket.on('list:submittedCards', function(cards)
@@ -71,7 +71,7 @@ socket.on('list:submittedCards', function(cards)
 
     for(i=0; i<cards.length;i++)
     {
-        $('#submittedCardsPage #submittedCards').append($('<li>').html('Current Question Card: ' + cards[i].text));
+        $('#submittedCardsPage #submittedCards').append($('<li>').html(cards[i].text));
     }
 });
 
