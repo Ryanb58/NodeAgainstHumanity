@@ -36,7 +36,7 @@ function Game(socket){
 
     //TODO:
     this.scores = {};
-    this.submittedCards = {};
+    this.submittedCards = new Array();
     //Username of the current game master.
     this.gameMaster = "";
     this.questionCard = this.getRandomCardFromQuestionDeck();
@@ -45,11 +45,11 @@ function Game(socket){
     this.host.join(this.roomId);
 }
 
-/* Socket Methods */
+/* Player Methods */
 Game.prototype.addPlayer = function(username, socket)
 {
     //Make the first person added to the game the initial gameMaster.
-    if(this.gameMaster != "")
+    if(this.gameMaster == "")
     {
         this.gameMaster = username;
     }
@@ -81,6 +81,16 @@ Game.prototype.selectNewGameMaster = function()
     }
 }
 
+Game.prototype.getGameMaster = function()
+{
+    return this.players[this.gameMaster];
+}
+
+Game.prototype.getPlayer = function(username)
+{
+    return this.players[username];
+}
+
 Game.prototype.removePlayer = function(username)
 {
     delete this.players[username];
@@ -99,8 +109,19 @@ Game.prototype.getListOfPlayerNames = function()
     return Object.keys(this.players);
 }
 
-Game.prototype.getHostSocket = function(){
+Game.prototype.getGameMasterName = function()
+{
+    return this.gameMaster;
+}
+
+Game.prototype.getHostSocket = function()
+{
     return this.host;
+}
+
+Game.prototype.getPlayerCount = function()
+{
+    return Object.keys(this.players).length;
 }
 
 
@@ -109,6 +130,11 @@ Game.prototype.getHostSocket = function(){
     TODO:
         Look into making sure no redundant cards are picked... (setting the picked cards to undefined in the deck maybe?)
 */
+
+Game.prototype.removeCardFromHand = function(playerName, cardIndex)
+{
+    this.hands[playerName].splice(cardIndex, 1);
+}
 
 Game.prototype.renewQuestionCard = function()
 {
@@ -138,6 +164,11 @@ Game.prototype.clearSubmittedCards = function()
     {
         this.submittedCards[i] = undefined;
     }
+}
+
+Game.prototype.getSubmittedCardsCount = function()
+{
+    return this.submittedCards.length;
 }
 
 Game.prototype.getRandomCardFromQuestionDeck = function()

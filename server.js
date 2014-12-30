@@ -19,9 +19,9 @@ var games = {};
 //Send the client user.
 app.get('/', function(req, res) {
     res.sendFile(__base + 'public/index.html');
-});
 
 //Send the client user.
+});
 app.get('/player', function(req, res) {
     res.sendFile(__base + 'public/player.html');
 });
@@ -92,8 +92,46 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on('submit:card', function(gameId, card){
+    socket.on('submit:card', function(gameId, playerName, cardIndex)
+    {
+        //Get the card from the players hand.
+        var card = games[gameId].getPlayersHand(playerName)[cardIndex];
+        //console.log(card);
 
+        //Check and make sure they haven't already submitted a card.
+        if(games[gameId].getPlayersHand(playerName).length !== 7)
+        {
+            //Already submitted a card...
+            console.log(playerName + " has already submitted a card.");
+            return;
+        }
+
+        //Put card in submitted cards pile.
+        games[gameId].addSubmittedCard(card);
+
+        //Remove card from players hand.
+        games[gameId].removeCardFromHand(playerName, cardIndex);
+
+        //Send them the updated hand of cards.
+        socket.emit('list:hand', games[gameId].getPlayersHand(playerName));
+
+        //DEBUG: Tell the host to update the list of submitted cards.
+        games[gameId].getHostSocket().emit('list:submittedCards', games[gameId].getSubmittedCards());
+
+        ////Check if they are the last person to submit their card.
+        var submittedCount = games[gameId].getSubmittedCardsCount();
+        //Player count minux the gamemaster.
+        var playerCount = games[gameId].getPlayerCount() - 1;
+        console.log(submittedCount + " : " + playerCount);
+        if(submittedCount == playerCount)
+        {
+            console.log("All players have submitted their cards...showing submitted cards to game master.")
+            //Appears that they are the last person to submit a card..
+            //Show the cards to the game master.
+            var gameMaster = games[gameId].getGameMaster();
+            //console.log(gameMaster.id);
+            gameMaster.emit('list:hand',games[gameId].getSubmittedCards());
+        }
     });
 
     /* Admin Functions */

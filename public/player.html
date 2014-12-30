@@ -16,12 +16,17 @@
         <strong>Cards:</strong>
         <ul id="myHand"><li><strong><a href="je">Yep</a></strong></li></ul>
     </div>
+    <div id="gameMasterPage">
+        <h2>You are the game master!</h2>
+        <h3></h3>
+    </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
 var socket = io();
 var gameId = undefined;
+var username = "";
 
 $(document).ready(function() {
     // User Interactions
@@ -31,6 +36,7 @@ $(document).ready(function() {
         console.log(code + " " + name);
         socket.emit('add:playerToGame',code ,name);
         gameId = code;
+        username = name;
         return false;
     });
 });
@@ -41,8 +47,12 @@ $(document).on("click","#handPage #myHand li strong a", function(event){
     event.preventDefault();
     //Get the original URL.. which is actually the cards index in the array.
 
-    console.log("Card " + $(this).attr('href') + " clicked!");
+    var cardIndex = $(this).attr('href');
+
+    console.log("Card " + cardIndex + " clicked!");
     //" + $(this).attr('href') + "
+
+    socket.emit('submit:card', gameId, username, cardIndex);
 });
 
 //Link socket actions to functions.
