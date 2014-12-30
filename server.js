@@ -94,6 +94,30 @@ io.on('connection', function(socket) {
 
     socket.on('submit:card', function(gameId, playerName, cardIndex)
     {
+        //If player is the game master.. then the card, is the card of the winner.
+        if(playerName == games[gameId].getGameMasterName())
+        {
+            //Then add point to the person whom submitted that card here..
+            var winnerName = games[gameId].getSubmittedCards()[cardIndex].playername;
+            games[gameId].addPointToPlayer(winnerName);
+
+            //Tell the host whom won the round!
+            games[gameId].getHostSocket().emit('winning:player', winnerName);
+
+            //then reset for new round.(make sure all hands are filled.)
+            games[gameId].refillAllPlayersHands();
+
+            //select a new question card.
+            games[gameId].setNewQuestionCard();
+
+            //select a new game master.
+            games[gameId].selectNewGameMaster();
+
+            //emit all the stuff to the clients.
+
+            return;
+        }
+
         //Get the card from the players hand.
         var card = games[gameId].getPlayersHand(playerName)[cardIndex];
         //console.log(card);
@@ -105,6 +129,9 @@ io.on('connection', function(socket) {
             console.log(playerName + " has already submitted a card.");
             return;
         }
+
+        //Add user's name to the submitted card. (Helps keep track of whom submitted what..)
+        card.playername = playerName;
 
         //Put card in submitted cards pile.
         games[gameId].addSubmittedCard(card);

@@ -17,8 +17,8 @@
         <ul id="myHand"><li><strong><a href="je">Yep</a></strong></li></ul>
     </div>
     <div id="gameMasterPage">
-        <h2>You are the game master!</h2>
-        <h3></h3>
+        <h2>Game Master Card:</h2>
+        <ul></ul>
     </div>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -57,6 +57,7 @@ $(document).on("click","#handPage #myHand li strong a", function(event){
 
 //Link socket actions to functions.
 socket.on('list:hand', updateCardsInHand);
+
 //FUnctions
 function updateCardsInHand(cards)
 {

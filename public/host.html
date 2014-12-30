@@ -68,11 +68,15 @@ socket.on('display:questionCard', function(card)
 socket.on('list:submittedCards', function(cards)
 {
     $('#submittedCardsPage #submittedCards').empty();
-    
+
     for(i=0; i<cards.length;i++)
     {
         $('#submittedCardsPage #submittedCards').append($('<li>').html('Current Question Card: ' + cards[i].text));
     }
+});
+
+socket.on('winning:player', function(name){
+    alert(name + 'won this round!');
 });
 
 </script>

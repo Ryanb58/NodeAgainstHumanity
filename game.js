@@ -39,7 +39,8 @@ function Game(socket){
     this.submittedCards = new Array();
     //Username of the current game master.
     this.gameMaster = "";
-    this.questionCard = this.getRandomCardFromQuestionDeck();
+    this.questionCard = new Object();
+    this.setNewQuestionCard();
 
     //Add this socket to the correct roomId.
     this.host.join(this.roomId);
@@ -171,7 +172,7 @@ Game.prototype.getSubmittedCardsCount = function()
     return this.submittedCards.length;
 }
 
-Game.prototype.getRandomCardFromQuestionDeck = function()
+Game.prototype.setNewQuestionCard = function()
 {
     //console.log("getting random card");
     //console.log(_.size(this.answerDeck));
@@ -185,6 +186,9 @@ Game.prototype.getRandomCardFromQuestionDeck = function()
         var CardNumber = Math.floor(Math.random() * _.size(this.answerDeck));
         //Get a copy of that card.
         Card = this.questionDeck[CardNumber];
+
+        //Set the questionCard.
+        this.questionCard = Card;
 
         //Ensure the card picked is not undefined.
         if(!_.isUndefined(Card))
@@ -229,6 +233,14 @@ Game.prototype.getRandomCardFromAnswerDeck = function()
     }
 }
 
+Game.prototype.refillAllPlayersHands = function()
+{
+    for(i=0;i<this.getPlayerCount();i++)
+    {
+        this.refillPlayersHand(this.getListOfPlayerNames()[i]);
+    }
+}
+
 //Ensure the player has at least 7 cards in their hands.
 Game.prototype.refillPlayersHand = function(username)
 {
@@ -255,5 +267,19 @@ Game.prototype.getPlayersHand = function(username)
     return this.hands[username];
 }
 
+
+
+/* Score Methods */
+
+Game.prototype.addPointToPlayer = function(username)
+{
+    //If not initialized.. then do so to 0;
+    if(this.scores[username] == undefined)
+    {
+        this.scores[username] = 0;
+    }
+
+    this.scores[username] = this.scores[username] + 1;
+}
 
 module.exports = Game;
