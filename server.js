@@ -1,7 +1,9 @@
 //Server
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var path = require('path');
 
 //Modules
 var _ = require('lodash');
@@ -31,6 +33,10 @@ app.get('/host', function(req, res) {
     res.sendFile(__base + 'public/host.html');
 });
 
+//Public folder.
+app.use("/", express.static(path.join(__dirname, 'public')));
+
+
 
 /** Handle Sockets **/
 
@@ -51,11 +57,12 @@ io.on('connection', function(socket) {
 
         //Emit the game info to the client.
         socket.emit('game:created', game.roomId);
+    });
 
-        //console.log("Question Card: " + game.getQuestionCard().text);
+    socket.on('start:game', function(gameId){
+        //Send question card to host and game master.
+        socket.emit('display:questionCard', games[gameId].getQuestionCard());
 
-        //DEBUG: Show Current Question Card.
-        socket.emit('display:questionCard', game.getQuestionCard());
     });
 
     /* Player Functions */
@@ -113,7 +120,7 @@ io.on('connection', function(socket) {
             //select a new question card.
             games[gameId].setNewQuestionCard();
             //DEBUG: Show Current Question Card on host.
-            games[gameId].getHostSocket().emit('display:questionCard', games[gameId].getQuestionCard());
+            socket.emit('display:questionCard', games[gameId].getQuestionCard());
 
             //select a new game master.
             games[gameId].selectNewGameMaster();

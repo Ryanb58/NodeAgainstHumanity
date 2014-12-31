@@ -5,80 +5,50 @@
     <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
 </head>
 <body>
-    <div id="gameIdPage">
-        <h2></h2>
-    </div>
-    <div id="onlineUsersPage">
-        <strong>Users:</strong>
-        <ul id="onlineUsers"></ul>
-    </div>
-    <div id="gameMasterPage">
+
+    <!-- This is where the template it will go! -->
+    <div id="hostArea">
 
     </div>
-    <div  id="questionCardPage">
 
-    </div>
-    <div id="submittedCardsPage">
-        <ul id="submittedCards"></ul>
-    </div>
+    <!-- Initial page shown upon navigated to page. -->
+    <script id="player-waiting-template" type="text/template">
+        <div id="gameIdPage">
+            <h2></h2>
+        </div>
+        <div id="onlineUsersPage">
+            <strong>Users:</strong>
+            <ul id="onlineUsers"></ul>
+        </div>
+        <a href="startGame" id="startGameButton">Start Game!</a>
+    </script>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script>
-var socket = io();
+    <!-- Page that shows during the game play. -->
+    <script id="game-template" type="text/template">
+        <div id="gameMasterPage">
 
-//Called initially.
-socket.emit('create:game');
+        </div>
+        <div  id="questionCard">
 
-socket.on('game:created', function(roomId){
-    console.log("Room ID: " + roomId);
-    $('#gameIdPage h2').text(roomId);
-    socket.emit('get:games');
-});
+        </div>
+        <div id="submittedCardsPage">
+            <ul id="submittedCards"></ul>
+        </div>
+        <div id="userScores">
 
-/*
-socket.on('list:games', function(games){
-    for(i = 0; i < games.length; i++)
-    {
-        $('#listOfGames ul').append($('<li>').html("<div style=\'text-decoration: underline\'>" + games[i] + "</div>"));
-    }
-});
-*/
+        </div>
+    </script>
 
-socket.on('list:players', function(players){
-    console.log('listing players..');
+    <!-- Javascript libraries -->
 
-    //Clear the list of users.
-    $('#onlineUsers').empty();
+    <!-- Socket handling Library -->
+    <script src="/socket.io/socket.io.js"></script>
 
-    //Add the players to the list.
-    for(i = 0; i < players.length; i++)
-    {
-        $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + players[i] + "</div>"));
-    }
-});
+    <!-- jQuery Library CDN -->
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
-socket.on('display:questionCard', function(card)
-{
-    console.log("Card: " + card);
-    console.log("Card Text: " + card.text);
-    $('#questionCardPage').html("Question Card: " + card.text);
-});
+    <!-- Host's library -->
+    <script src="js/host.js"></script>
 
-socket.on('list:submittedCards', function(cards)
-{
-    $('#submittedCardsPage #submittedCards').empty();
-
-    for(i=0; i<cards.length;i++)
-    {
-        $('#submittedCardsPage #submittedCards').append($('<li>').html(cards[i].text));
-    }
-});
-
-socket.on('winning:player', function(name){
-    alert(name + 'won this round!');
-});
-
-</script>
-  </body>
+</body>
 </html>

@@ -1,0 +1,69 @@
+var socket = io();
+var gameId = undefined;
+
+//Called initially. Only one time... On page load.
+pageLoad();
+
+function pageLoad()
+{
+    //Emit the creation of the game.
+    socket.emit('create:game');
+}
+
+/* Button Functions */
+$(document).on("click","#startGameButton", function(event){
+    event.preventDefault();
+
+    //Tell the server to start the game.
+    socket.emit('start:game', gameId);
+});
+
+socket.on('game:created', function(roomId){
+    //console.log("Game ID: " + roomId);
+
+    //gameId and roomId should be interchangeable.
+    //Store gameId.
+    gameId = roomId;
+
+    //Show "player-waiting-template".
+    $('#hostArea').html($('#player-waiting-template').html());
+
+    $('#gameIdPage h2').text(roomId);
+});
+
+socket.on('list:players', function(players){
+    console.log('listing players..');
+
+    //Clear the list of users.
+    $('#onlineUsers').empty();
+
+    //Add the players to the list.
+    for(i = 0; i < players.length; i++)
+    {
+        $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + players[i] + "</div>"));
+    }
+});
+
+socket.on('display:questionCard', function(card)
+{
+    //Show the game template.
+    $('#hostArea').html($('#game-template').html());
+
+    //console.log("Card: " + card);
+    //console.log("Card Text: " + card.text);
+    $('#questionCard').html("<strong>" + card.text + "</strong>");
+});
+
+socket.on('list:submittedCards', function(cards)
+{
+    $('#submittedCardsPage #submittedCards').empty();
+
+    for(i=0; i<cards.length;i++)
+    {
+        $('#submittedCardsPage #submittedCards').append($('<li>').html(cards[i].text));
+    }
+});
+
+socket.on('winning:player', function(name){
+    alert(name + 'won this round!');
+});

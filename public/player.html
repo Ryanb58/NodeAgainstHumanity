@@ -2,12 +2,22 @@
 <html>
 <head>
     <title>Player - Node Against Humanity</title>
+
+    <meta charset="utf-8"/>
+
+    <!-- Ensure that everything scales appropriately on a mobile device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <!-- Let's borrow a cool looking Font from Google -->
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+
     <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
+
 </head>
 <body>
     <div id="joinGamePage">
         <form action="">
-            Game Code<input id="code" />
+            Game Code<input id="code" /><br />
             First Name<input id="username" />
             <button>Join Game</button>
         </form>
@@ -21,60 +31,20 @@
         <ul></ul>
     </div>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script>
-var socket = io();
-var gameId = undefined;
-var username = "";
+    <!-- Javascript libraries -->
 
-$(document).ready(function() {
-    // User Interactions
-    $('form').submit(function(){
-        var code = $('#code').val();
-        var name = $('#username').val();
-        console.log(code + " " + name);
-        socket.emit('add:playerToGame',code ,name);
-        gameId = code;
-        username = name;
-        return false;
-    });
-});
+    <!-- TextFit resizes text to fill a container.
+        It's used so the titles and game words fit properly on any size screen.
+        https://github.com/STRML/textFit   -->
+    <script src="libs/textFit.min.js"></script>
 
-//User selects a card to send.
-//Manipulate things that have already been manipulated on the DOM.
-$(document).on("click","#handPage #myHand li strong a", function(event){
-    event.preventDefault();
-    //Get the original URL.. which is actually the cards index in the array.
+    <!-- Socket.io library to communicate with server. -->
+    <script src="/socket.io/socket.io.js"></script>
 
-    var cardIndex = $(this).attr('href');
+    <!-- jQuery library to do DOM manipulation a bit easier. -->
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
-    console.log("Card " + cardIndex + " clicked!");
-    //" + $(this).attr('href') + "
-
-    socket.emit('submit:card', gameId, username, cardIndex);
-});
-
-//Link socket actions to functions.
-socket.on('list:hand', updateCardsInHand);
-
-//FUnctions
-function updateCardsInHand(cards)
-{
-    //Empty the current cards.
-    $('#myHand').empty();
-
-    for(i=0;i<cards.length;i++)
-    {
-        $('#myHand').append('<li><strong><a href="'+ i +'">' + cards[i].text + '</a></strong></li>');
-    }
-/*
-    $.each(cards, function(){
-        $('#myHand').append('<li><strong>' + this.text + '</strong></li>');
-    })
-*/
-}
-
-</script>
-  </body>
+    <!-- Player's library -->
+    <script src="js/player.js"></script>
+</body>
 </html>
