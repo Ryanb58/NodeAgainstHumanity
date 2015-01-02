@@ -40,7 +40,7 @@ socket.on('list:players', function(players){
     //Add the players to the list.
     for(i = 0; i < players.length; i++)
     {
-        $('#onlineUsers').append($('<li>').html("<div style=\'text-decoration: underline\'>" + players[i] + "</div>"));
+        $('#onlineUsers').append($('<li class="list-group-item">').html("<div style=\'text-decoration: underline\'>" + players[i] + "</div>"));
     }
 });
 
@@ -60,7 +60,7 @@ socket.on('list:submittedCards', function(cards)
 
     for(i=0; i<cards.length;i++)
     {
-        $('#submittedCardsPage #submittedCards').append($('<li>').html(cards[i].text));
+        $('#submittedCardsPage #submittedCards').append($('<li id="list-group-item">').html(cards[i].text));
     }
 });
 
