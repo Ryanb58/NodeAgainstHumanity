@@ -41,11 +41,11 @@ function updateCardsInHand(cards)
 
     for(i=0;i<cards.length;i++)
     {
-        $('#myHand').append('<li><strong><a href="'+ i +'">' + cards[i].text + '</a></strong></li>');
+        $('#myHand').append('<li class="list-group-item"><strong><a href="'+ i +'">' + cards[i].text + '</a></strong></li>');
     }
 }
 
 //Textfit Initialization:
-textFit(document.getElementById('joinGamePage'));
-textFit(document.getElementById('handPage'));
-textFit(document.getElementById('gameMasterPage'));
+//textFit(document.getElementById('joinGamePage'));
+//textFit(document.getElementById('handPage'));
+//textFit(document.getElementById('gameMasterPage'));

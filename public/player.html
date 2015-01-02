@@ -39,15 +39,16 @@
 		</div>
 		
 		<div id="joinGamePage">
-			<form action="">
-				Game Code<input id="code" /><br />
-				First Name<input id="username" />
-				<button>Join Game</button>
+			<form action="" class="form-horizontal" role="form">
+				<div class="form-group">
+					Game Code<input id="code" class="form-control" /><br />
+					First Name<input id="username" class="form-control" />
+				</div>
+				<button class="btn btn-success pull-right">Join Game</button>
 			</form>
 		</div>
 		<div id="handPage">
-			<strong>Cards:</strong>
-			<ul id="myHand"><li><strong><a href="je">Yep</a></strong></li></ul>
+			<ul id="myHand" id="list-group"></ul>
 		</div>
 		<div id="gameMasterPage">
 			<h2>Game Master Card:</h2>
