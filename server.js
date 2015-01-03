@@ -60,8 +60,22 @@ io.on('connection', function(socket) {
     });
 
     socket.on('start:game', function(gameId){
-        //Send question card to host and game master.
+        //Send question card to host.
         socket.emit('display:questionCard', games[gameId].getQuestionCard());
+
+        //Tell each player that the game has started.
+        var playerNames = games[gameId].getListOfPlayerNames();
+        for(i=0;i<playerNames.length;i++)
+        {
+            //Show the client's hand.
+            games[gameId].getPlayer(playerNames[i]).emit('show:game');
+            //Emit the client's hand.
+            games[gameId].getPlayer(playerNames[i]).emit('list:hand', games[gameId].getPlayersHand(playerNames[i]));
+            //Also emit their score.
+        }
+
+        //Send the question card to the game Master! 
+        games[gameId].getGameMaster().emit('display:questionCard', games[gameId].getQuestionCard());
 
     });
 
@@ -87,7 +101,7 @@ io.on('connection', function(socket) {
         var playerNames = games[gameId].getListOfPlayerNames();
         for(i=0;i<playerNames.length;i++){
             console.log(playerNames[i] + ":");
-            console.log(games[gameId].getPlayersHand(playerNames[i]));
+            //console.log(games[gameId].getPlayersHand(playerNames[i]));
         }
 
         //Tell the client that they have been added to the game.

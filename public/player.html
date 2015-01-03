@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="../../favicon.ico">
+	<link rel="icon" href="favicon.ico">
 
     <title>Player - Node Against Humanity</title>
 
@@ -36,10 +36,13 @@
 		</div>
 
 		<!-- This is where the template it will go! -->
-		<div id="hostArea">
+		<div id="playerArea">
 
 		</div>
-		
+
+	</div><!-- /.container -->
+
+	<script id="initial-template" type="text/template">
 		<div id="joinGamePage">
 			<form action="" class="form-horizontal" role="form">
 				<div class="form-group">
@@ -49,6 +52,13 @@
 				<button class="btn btn-success pull-right">Join Game</button>
 			</form>
 		</div>
+	</script>
+
+	<script id="player-waiting-template" type="text/template">
+		<h2>Connecting...</h2>
+	</script>
+
+	<script id="game-template" type="text/template">
 		<div id="handPage">
 			<ul id="myHand" id="list-group"></ul>
 		</div>
@@ -56,8 +66,8 @@
 			<h2>Game Master Card:</h2>
 			<ul></ul>
 		</div>
+	</script>
 
-	</div><!-- /.container -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

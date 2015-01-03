@@ -79,8 +79,8 @@ Game.prototype.selectNewGameMaster = function()
         //max(exclusive) min(inclusive) --> Math.floor(Math.random() * (max - min) + min);
         playerNumber = Math.floor(Math.random() * listOfPlayers.length);
         this.gameMaster = listOfPlayers[playerNumber];
-        console.log("New GameMaster: " + listOfPlayers[playerNumber]);
     }
+    console.log("New GameMaster: " + listOfPlayers[playerNumber]);
 }
 
 Game.prototype.getGameMaster = function()
@@ -259,13 +259,13 @@ Game.prototype.refillPlayersHand = function(username)
     if(this.hands[username] == undefined)
     {
         this.hands[username] = new Array();
-        console.error("Undefined hands...Initializing to new array.");
+        //console.error("Undefined hands...Initializing to new array.");
     }
 
     //If the user doesn't have at least 7 cards then get them from the deck.
     for(j = _.size(this.hands[username]); j < 7; j++)
     {
-        console.log("Adding card to the hand..");
+        //console.log("Adding card to the hand..");
         this.hands[username].push(this.getRandomCardFromAnswerDeck());
     }
 
