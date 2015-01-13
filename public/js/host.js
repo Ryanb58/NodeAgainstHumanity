@@ -26,7 +26,7 @@ socket.on('game:created', function(roomId){
     gameId = roomId;
 
     //Show "player-waiting-template".
-    $('#hostArea').html($('#player-waiting-template').html());
+    openPlayerConnectionPage();
 
     $('#gameIdPage h2').text(roomId);
 });
@@ -47,7 +47,7 @@ socket.on('list:players', function(players){
 socket.on('display:questionCard', function(card)
 {
     //Show the game template.
-    $('#hostArea').html($('#game-template').html());
+    openGamePage();
 
     //console.log("Card: " + card);
     //console.log("Card Text: " + card.text);
@@ -67,3 +67,18 @@ socket.on('list:submittedCards', function(cards)
 socket.on('winning:player', function(name){
     alert(name + 'won this round!');
 });
+
+
+/*
+ * Open/Close Page functions.
+ */
+
+function openPlayerConnectionPage()
+{
+    $('#hostArea').html($('#player-waiting-template').html());
+}
+
+function openGamePage()
+{
+    $('#hostArea').html($('#game-template').html());
+}

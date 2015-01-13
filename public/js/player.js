@@ -4,8 +4,8 @@ var gameId = undefined;
 var username = "";
 
 //Load initial page template:
-$('#playerArea').html($('#initial-template').html());
 
+openInitialPage();
 
 $(document).ready(function() {
     // User Interactions
@@ -16,7 +16,7 @@ $(document).ready(function() {
         socket.emit('add:playerToGame',code ,name);
         gameId = code;
         username = name;
-        $('#playerArea').html($('#player-waiting-template').html());
+        openConnectingPage();
         return false;
     });
 });
@@ -44,7 +44,7 @@ socket.on('display:questionCard', showQuestionCard);
 //Functions
 function showGame()
 {
-    $('#playerArea').html($('#game-template').html());
+    openGamePage();
 
 }
 
@@ -66,14 +66,29 @@ function showQuestionCard(card)
     $('#myHand').empty();
 
     //Show the game template.
-    $('#playerArea').html($('#game-template').html());
+    openGamePage();
 
     //console.log("Card: " + card);
     //console.log("Card Text: " + card.text);
     $('#questionCard').html("<strong>" + card.text + "</strong>");
 }
 
-//Textfit Initialization:
-//textFit(document.getElementById('joinGamePage'));
-//textFit(document.getElementById('handPage'));
-//textFit(document.getElementById('gameMasterPage'));
+
+/*
+ * Open/Close Page functions.
+ */
+
+function openInitialPage()
+{
+    $('#playerArea').html($('#initial-template').html());
+}
+
+function openConnectingPage()
+{
+    $('#playerArea').html($('#player-waiting-template').html());
+}
+
+function openGamePage()
+{
+    $('#playerArea').html($('#game-template').html());
+}
