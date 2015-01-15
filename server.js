@@ -128,13 +128,17 @@ io.on('connection', function(socket) {
             //Clear the submitted Cards.
             games[gameId].clearSubmittedCards();
 
-            //then reset for new round.(make sure all hands are filled.)
+            //Clear the submitted cards the host is displaying...
+            games[gameId].getHostSocket().emit('list:submittedCards', undefined);
+
+            //reset all players hands... refil if nessesary.
             games[gameId].refillAllPlayersHands();
 
             //select a new question card.
             games[gameId].setNewQuestionCard();
+            
             //DEBUG: Show Current Question Card on host.
-            socket.emit('display:questionCard', games[gameId].getQuestionCard());
+            games[gameId].getHostSocket().emit('display:questionCard', games[gameId].getQuestionCard());
 
             //select a new game master.
             games[gameId].selectNewGameMaster();

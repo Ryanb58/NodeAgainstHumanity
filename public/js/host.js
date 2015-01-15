@@ -65,9 +65,9 @@ socket.on('list:submittedCards', function(cards)
 });
 
 socket.on('winning:player', function(name){
-    alert(name + 'won this round!');
+    //TODO: Make this into a like DIV popup or something.
+    alert(name + ' won this round!');
 });
-
 
 /*
  * Open/Close Page functions.
