@@ -13,6 +13,10 @@ body {
 	text-align: center;
 }
 
+#hostArea {
+	padding: 10px;
+}
+
 /* unvisited link */
 a:link {
     color: White;

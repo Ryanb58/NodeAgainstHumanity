@@ -25,8 +25,9 @@ var _ = require("lodash");
 function Game(socket){
 
     //Populate deck instances of cards.
-    this.answerDeck = require('cah-cards/answers');
-    this.questionDeck = require('cah-cards/pick1');
+    //Filter for only the Base deck of cards.
+    this.answerDeck = _.filter(require('cah-cards/answers'), { 'expansion': 'Base' });
+    this.questionDeck = _.filter(require('cah-cards/pick1'), { 'expansion': 'Base' });
 
     //Game Properties
     this.roomId = ( Math.random() * 100000 ) | 0;
