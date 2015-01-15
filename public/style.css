@@ -1,11 +1,34 @@
-@import url(http://fonts.googleapis.com/css?family=Metrophobic);
+/* @import url(http://fonts.googleapis.com/css?family=Metrophobic); */
 
 body {
 	margin:0;
 	padding: 0;
-	font-family: 'Metrophobic', sans-serif;
-
+	font-family:monospace, serif;
+	font-size:1em;
+	background-color: Black;
+	color: White;
 }
+
 .page-header {
 	text-align: center;
+}
+
+/* unvisited link */
+a:link {
+    color: White;
+}
+
+/* visited link */
+a:visited {
+    color: White;
+}
+
+/* mouse over link */
+a:hover {
+    color: White;
+}
+
+/* selected link */
+a:active {
+    color: White;
 }
