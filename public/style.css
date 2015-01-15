@@ -1,6 +1,10 @@
+@import url(http://fonts.googleapis.com/css?family=Metrophobic);
+
 body {
 	margin:0;
 	padding: 0;
+	font-family: 'Metrophobic', sans-serif;
+
 }
 .page-header {
 	text-align: center;
