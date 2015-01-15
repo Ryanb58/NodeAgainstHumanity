@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 //User selects a card to send.
 //Manipulate things that have already been manipulated on the DOM.
-$(document).on("click","#handPage #myHand li strong a", function(event){
+$(document).on("click","#myHand li strong a", function(event){
     event.preventDefault();
     //Get the original URL.. which is actually the cards index in the array.
 
@@ -45,7 +45,6 @@ socket.on('display:questionCard', showQuestionCard);
 function showGame()
 {
     openGamePage();
-
 }
 
 function updateCardsInHand(cards)
@@ -62,11 +61,8 @@ function updateCardsInHand(cards)
 //If game master.. then show the question card.
 function showQuestionCard(card)
 {
-    //Clear the hand.
-    $('#myHand').empty();
-
     //Show the game template.
-    openGamePage();
+    openGameMasterPage();
 
     //console.log("Card: " + card);
     //console.log("Card Text: " + card.text);
@@ -91,4 +87,9 @@ function openConnectingPage()
 function openGamePage()
 {
     $('#playerArea').html($('#game-template').html());
+}
+
+function openGameMasterPage()
+{
+    $('#playerArea').html($('#gameMaster-template').html());
 }

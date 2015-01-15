@@ -118,6 +118,9 @@ io.on('connection', function(socket) {
         //If player is the game master.. then the card, is the card of the winner.
         if(playerName == games[gameId].getGameMasterName())
         {
+            //Show the original game to the game master.
+            socket.emit('show:game');
+
             //Then add point to the person whom submitted that card here..
             var winnerName = games[gameId].getSubmittedCards()[cardIndex].playername;
             games[gameId].addPointToPlayer(winnerName);
@@ -136,23 +139,30 @@ io.on('connection', function(socket) {
 
             //select a new question card.
             games[gameId].setNewQuestionCard();
-            
-            //DEBUG: Show Current Question Card on host.
-            games[gameId].getHostSocket().emit('display:questionCard', games[gameId].getQuestionCard());
 
             //select a new game master.
             games[gameId].selectNewGameMaster();
+
+            //DEBUG: Show Current Question Card on host.
+            games[gameId].getHostSocket().emit('display:questionCard', games[gameId].getQuestionCard());
 
             //emit new scores and hands to all of the clients.
             var playerNames = games[gameId].getListOfPlayerNames();
             for(i=0;i<playerNames.length;i++)
             {
                 ////If gamemaster then push the black card to them.
+                if(games[gameId].getGameMasterName() == playerNames[i])
+                {
+                    console.log("This is where we would give " + playerNames[i] + " his/her Question Card.");
+                    games[gameId].getPlayer(playerNames[i]).emit('display:questionCard', games[gameId].getQuestionCard());
+                }
+                else
+                {
+                    //Emit the client's hand.
+                    games[gameId].getPlayer(playerNames[i]).emit('list:hand', games[gameId].getPlayersHand(playerNames[i]));
+                    //Also emit their score.
 
-                ////Else
-                //Emit the client's hand.
-                games[gameId].getPlayer(playerNames[i]).emit('list:hand', games[gameId].getPlayersHand(playerNames[i]));
-                //Also emit their score.
+                }               
             }
 
             //Prevents the rest of the function from continuing.
@@ -179,6 +189,9 @@ io.on('connection', function(socket) {
 
         //Remove card from players hand.
         games[gameId].removeCardFromHand(playerName, cardIndex);
+
+        //Send them the updated hand of cards.
+        socket.emit('show:game');
 
         //Send them the updated hand of cards.
         socket.emit('list:hand', games[gameId].getPlayersHand(playerName));
