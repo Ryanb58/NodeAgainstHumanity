@@ -283,6 +283,11 @@ Game.prototype.getPlayersHand = function(username)
 
 /* Score Methods */
 
+Game.prototype.getPlayerPoints = function(username)
+{
+    return this.scores[username];
+}
+
 Game.prototype.addPointToPlayer = function(username)
 {
     //If not initialized.. then do so to 0;

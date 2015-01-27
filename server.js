@@ -153,7 +153,7 @@ io.on('connection', function(socket) {
                 ////If gamemaster then push the black card to them.
                 if(games[gameId].getGameMasterName() == playerNames[i])
                 {
-                    console.log("This is where we would give " + playerNames[i] + " his/her Question Card.");
+                    //console.log("This is where we would give " + playerNames[i] + " his/her Question Card.");
                     games[gameId].getPlayer(playerNames[i]).emit('display:questionCard', games[gameId].getQuestionCard());
                 }
                 else
@@ -163,6 +163,8 @@ io.on('connection', function(socket) {
                     //Also emit their score.
 
                 }
+                //DEBUG:
+                console.log("S -- " + playerNames[i] + " : " + games[gameId].getPlayerPoints(playerNames[i]));
             }
 
             //Prevents the rest of the function from continuing.
