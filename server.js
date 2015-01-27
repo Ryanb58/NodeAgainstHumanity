@@ -74,7 +74,7 @@ io.on('connection', function(socket) {
             //Also emit their score.
         }
 
-        //Send the question card to the game Master! 
+        //Send the question card to the game Master!
         games[gameId].getGameMaster().emit('display:questionCard', games[gameId].getQuestionCard());
 
     });
@@ -162,7 +162,7 @@ io.on('connection', function(socket) {
                     games[gameId].getPlayer(playerNames[i]).emit('list:hand', games[gameId].getPlayersHand(playerNames[i]));
                     //Also emit their score.
 
-                }               
+                }
             }
 
             //Prevents the rest of the function from continuing.
@@ -246,6 +246,6 @@ io.on('connection', function(socket) {
 
 
 /** Start up server **/
-http.listen(8080, function() {
-    console.log('listening on *:8080');
+http.listen(3000, function() {
+    console.log('listening on *:3000');
 });
