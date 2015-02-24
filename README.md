@@ -11,12 +11,12 @@ Node.JS - 0.11.16
 
 ## Getting Started ##
 
-*Ensure your test enviroment has met the requirements above.
-*Clone this repository.
-*Open up your terminal or command line tool 
-*Run 'npm install' to install the required packages.
-*Then run 'node server.js' to start the server.
-*Enjoy!
+1. Ensure your test enviroment has met the requirements above.
+2. Clone this repository.
+3. Open up your terminal or command line tool 
+4. Run 'npm install' to install the required packages.
+5. Then run 'node server.js' to start the server.
+6. Enjoy!
 
 ## Code License ##
 
