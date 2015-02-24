@@ -164,8 +164,11 @@ io.on('connection', function(socket) {
 
                 }
                 //DEBUG:
-                console.log("S -- " + playerNames[i] + " : " + games[gameId].getPlayerPoints(playerNames[i]));
+                console.log("S -- " + playerNames[i] + " : " + games[gameId].getPlayerScore(playerNames[i]));
             }
+
+            //Emit the scores to the host.
+            games[gameId].getHostSocket().emit('display:scores', games[gameId].getAllScores());
 
             //Prevents the rest of the function from continuing.
             return;

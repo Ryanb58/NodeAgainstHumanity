@@ -283,9 +283,14 @@ Game.prototype.getPlayersHand = function(username)
 
 /* Score Methods */
 
-Game.prototype.getPlayerPoints = function(username)
+Game.prototype.getPlayerScore = function(username)
 {
     return this.scores[username];
+}
+
+Game.prototype.getAllScores = function()
+{
+    return this.scores;
 }
 
 Game.prototype.addPointToPlayer = function(username)

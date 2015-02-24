@@ -9,12 +9,21 @@ body {
 	color: White;
 }
 
+.container {
+	position:relative;
+}
+
 .page-header {
 	text-align: center;
 }
 
 #hostArea {
 	padding: 10px;
+}
+
+#scores{
+	position:fixed;
+	bottom:0;
 }
 
 /* unvisited link */

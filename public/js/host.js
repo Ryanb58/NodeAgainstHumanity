@@ -18,6 +18,13 @@ $(document).on("click","#startGameButton", function(event){
     socket.emit('start:game', gameId);
 });
 
+socket.on('display:scores', function(scores){
+    for(var username in scores)
+    {
+        console.log(username + " has a score of " + scores[username]);
+    }
+});
+
 socket.on('game:created', function(roomId){
     //console.log("Game ID: " + roomId);
 
