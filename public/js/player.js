@@ -4,9 +4,9 @@ var gameId = undefined;
 var username = "";
 
 //Load initial page template:
-
 openInitialPage();
 
+//Add event listener on page ready up... so that on submit the form will actually do something.
 $(document).ready(function() {
     // User Interactions
     $('form').submit(function(){
@@ -22,7 +22,6 @@ $(document).ready(function() {
 });
 
 //User selects a card to send.
-//Manipulate things that have already been manipulated on the DOM.
 $(document).on("click","#myHand li strong a", function(event){
     event.preventDefault();
     //Get the original URL.. which is actually the cards index in the array.
@@ -68,6 +67,7 @@ function showQuestionCard(card)
     //console.log("Card Text: " + card.text);
     $('#questionCard').html("<strong>" + card.text + "</strong>");
 }
+
 
 
 /*

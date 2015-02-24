@@ -34,12 +34,12 @@ function Game(socket){
     this.host = socket;
     this.players = {};
     this.hands = {};
-
-    //TODO:
     this.scores = {};
     this.submittedCards = new Array();
+    
     //Username of the current game master.
     this.gameMaster = "";
+    
     this.questionCard = new Object();
     this.setNewQuestionCard();
 
@@ -47,7 +47,8 @@ function Game(socket){
     this.host.join(this.roomId);
 }
 
-/* Player Methods */
+/*** Player Methods ***/
+
 Game.prototype.addPlayer = function(username, socket)
 {
     //Make the first person added to the game the initial gameMaster.
@@ -163,16 +164,6 @@ Game.prototype.addSubmittedCard = function(card)
 
 Game.prototype.clearSubmittedCards = function()
 {
-/*
-    for(i=0;i<this.submittedCards.length;i++)
-    {
-        delete this.submittedCards[i];
-    }
-*/
-/*
-    delete this.submittedCards;
-    this.submittedCards = new Array();
-*/
     //Source: http://stackoverflow.com/questions/1232040/empty-an-array-in-javascript
     while(this.submittedCards.length > 0) {
         this.submittedCards.pop();
@@ -224,18 +215,12 @@ Game.prototype.getRandomCardFromAnswerDeck = function()
     {
         //Pick random number within the bounds of the deck.
         var CardNumber = Math.floor(Math.random() * _.size(this.answerDeck));
-        //console.log(CardNumber);
-        //if(CardNumber != 0)
-        //{
-
+        
         //Get a copy of that card.
         Card = this.answerDeck[CardNumber];
 
-        //}
-        //console.log(Card);
-
+        
         //Ensure the card picked is not undefined.
-
         if(!_.isUndefined(Card))
         {
             keepGoing = false;
@@ -281,7 +266,7 @@ Game.prototype.getPlayersHand = function(username)
 
 
 
-/* Score Methods */
+/*** Score Methods ***/
 
 Game.prototype.getPlayerScore = function(username)
 {
@@ -304,4 +289,6 @@ Game.prototype.addPointToPlayer = function(username)
     this.scores[username] = this.scores[username] + 1;
 }
 
+
+//Boiler plate.
 module.exports = Game;

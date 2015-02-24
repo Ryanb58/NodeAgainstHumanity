@@ -221,7 +221,9 @@ io.on('connection', function(socket) {
     });
 
     /* Admin Functions */
-
+    
+    
+    //TODO: Remove this section.
     //Get list of games.
     socket.on('get:games', function(){
         socket.emit('list:games', Object.keys(games));
@@ -234,9 +236,11 @@ io.on('connection', function(socket) {
         {
             if(socket.id = games[i].host.id)
             {
+                //TODO: Send out to clients that the game host has disconnected.
+                
                 //Yes it was the host that disconnected...
                 //Delete their game and all the info in it.
-                delete games[i];
+                delete games[i];                
             }
         }
 

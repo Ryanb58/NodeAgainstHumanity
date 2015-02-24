@@ -18,6 +18,7 @@ $(document).on("click","#startGameButton", function(event){
     socket.emit('start:game', gameId);
 });
 
+//Display the updated scores.
 socket.on('display:scores', function(scores){
     for(var username in scores)
     {
@@ -25,6 +26,7 @@ socket.on('display:scores', function(scores){
     }
 });
 
+//Note that the game has been created.
 socket.on('game:created', function(roomId){
     //console.log("Game ID: " + roomId);
 
@@ -38,6 +40,7 @@ socket.on('game:created', function(roomId){
     $('#gameIdPage h2').text(roomId);
 });
 
+//Show the host a list of the players connected.
 socket.on('list:players', function(players){
     console.log('listing players..');
 
@@ -51,6 +54,7 @@ socket.on('list:players', function(players){
     }
 });
 
+//Show the question card.
 socket.on('display:questionCard', function(card)
 {
     //Show the game template.
@@ -61,6 +65,7 @@ socket.on('display:questionCard', function(card)
     $('#questionCard').html("<strong>" + card.text + "</strong>");
 });
 
+//Show the cards that have been submitted.
 socket.on('list:submittedCards', function(cards)
 {
     $('#submittedCardsPage #submittedCards').empty();
@@ -71,10 +76,13 @@ socket.on('list:submittedCards', function(cards)
     }
 });
 
+//Let everyone know who the winner of the round!
 socket.on('winning:player', function(name){
     //TODO: Make this into a like DIV popup or something.
     alert(name + ' won this round!');
 });
+
+
 
 /*
  * Open/Close Page functions.
