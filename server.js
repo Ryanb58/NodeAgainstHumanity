@@ -22,7 +22,7 @@ var games = {};
 app.get('/', function(req, res) {
     res.sendFile(__base + 'public/index.html');
 
-//Send the client user.
+    //Send the client user.
 });
 app.get('/player', function(req, res) {
     res.sendFile(__base + 'public/player.html');
@@ -59,14 +59,13 @@ io.on('connection', function(socket) {
         socket.emit('game:created', game.roomId);
     });
 
-    socket.on('start:game', function(gameId){
+    socket.on('start:game', function(gameId) {
         //Send question card to host.
         socket.emit('display:questionCard', games[gameId].getQuestionCard());
 
         //Tell each player that the game has started.
         var playerNames = games[gameId].getListOfPlayerNames();
-        for(i=0;i<playerNames.length;i++)
-        {
+        for (i = 0; i < playerNames.length; i++) {
             //Show the client's hand.
             games[gameId].getPlayer(playerNames[i]).emit('show:game');
             //Emit the client's hand.
@@ -82,12 +81,11 @@ io.on('connection', function(socket) {
     /* Player Functions */
     //Probably have to submit the gameID of which you are in every request...
 
-    socket.on('add:playerToGame', function(gameId, playerName){
+    socket.on('add:playerToGame', function(gameId, playerName) {
         console.log('Adding a player');
 
         //Check to make sure game exists.
-        if(!(gameId in games))
-        {
+        if (!(gameId in games)) {
             //The game ID does not exist.
             console.log("game id doesn't exist.");
             return;
@@ -99,7 +97,7 @@ io.on('connection', function(socket) {
         //DEBUG HELPER:
         console.log("Games Players: ");
         var playerNames = games[gameId].getListOfPlayerNames();
-        for(i=0;i<playerNames.length;i++){
+        for (i = 0; i < playerNames.length; i++) {
             console.log(playerNames[i] + ":");
             //console.log(games[gameId].getPlayersHand(playerNames[i]));
         }
@@ -113,11 +111,9 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on('submit:card', function(gameId, playerName, cardIndex)
-    {
+    socket.on('submit:card', function(gameId, playerName, cardIndex) {
         //If player is the game master.. then the card, is the card of the winner.
-        if(playerName == games[gameId].getGameMasterName())
-        {
+        if (playerName == games[gameId].getGameMasterName()) {
             //Show the original game to the game master.
             socket.emit('show:game');
 
@@ -148,16 +144,12 @@ io.on('connection', function(socket) {
 
             //emit new scores and hands to all of the clients.
             var playerNames = games[gameId].getListOfPlayerNames();
-            for(i=0;i<playerNames.length;i++)
-            {
+            for (i = 0; i < playerNames.length; i++) {
                 ////If gamemaster then push the black card to them.
-                if(games[gameId].getGameMasterName() == playerNames[i])
-                {
+                if (games[gameId].getGameMasterName() == playerNames[i]) {
                     //console.log("This is where we would give " + playerNames[i] + " his/her Question Card.");
                     games[gameId].getPlayer(playerNames[i]).emit('display:questionCard', games[gameId].getQuestionCard());
-                }
-                else
-                {
+                } else {
                     //Emit the client's hand.
                     games[gameId].getPlayer(playerNames[i]).emit('list:hand', games[gameId].getPlayersHand(playerNames[i]));
                     //Also emit their score.
@@ -179,8 +171,7 @@ io.on('connection', function(socket) {
         //console.log(card);
 
         //Check and make sure they haven't already submitted a card.
-        if(games[gameId].getPlayersHand(playerName).length !== 7)
-        {
+        if (games[gameId].getPlayersHand(playerName).length !== 7) {
             //Already submitted a card...
             console.log(playerName + " has already submitted a card.");
             return;
@@ -209,38 +200,35 @@ io.on('connection', function(socket) {
         //Player count minux the gamemaster.
         var playerCount = games[gameId].getPlayerCount() - 1;
         console.log(submittedCount + " : " + playerCount);
-        if(submittedCount == playerCount)
-        {
+        if (submittedCount == playerCount) {
             console.log("All players have submitted their cards...showing submitted cards to game master.")
-            //Appears that they are the last person to submit a card..
-            //Show the cards to the game master.
+                //Appears that they are the last person to submit a card..
+                //Show the cards to the game master.
             var gameMaster = games[gameId].getGameMaster();
             //console.log(gameMaster.id);
-            gameMaster.emit('list:hand',games[gameId].getSubmittedCards());
+            gameMaster.emit('list:hand', games[gameId].getSubmittedCards());
         }
     });
 
     /* Admin Functions */
-    
-    
+
+
     //TODO: Remove this section.
     //Get list of games.
-    socket.on('get:games', function(){
+    socket.on('get:games', function() {
         socket.emit('list:games', Object.keys(games));
     });
 
     //Disconnect socket.
     socket.on('disconnect', function() {
         //Figure out how to check if it is a player, or a host that quits...
-        for(i=0;i<games.length;i++)
-        {
-            if(socket.id = games[i].host.id)
-            {
+        for (i = 0; i < games.length; i++) {
+            if (socket.id = games[i].host.id) {
                 //TODO: Send out to clients that the game host has disconnected.
-                
+
                 //Yes it was the host that disconnected...
                 //Delete their game and all the info in it.
-                delete games[i];                
+                delete games[i];
             }
         }
 
