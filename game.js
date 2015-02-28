@@ -22,24 +22,28 @@ var _ = require("lodash");
  */
 
 //Constructor
-function Game(socket){
+function Game(socket) {
 
     //Populate deck instances of cards.
     //Filter for only the Base deck of cards.
-    this.answerDeck = _.filter(require('cah-cards/answers'), { 'expansion': 'Base' });
-    this.questionDeck = _.filter(require('cah-cards/pick1'), { 'expansion': 'Base' });
+    this.answerDeck = _.filter(require('cah-cards/answers'), {
+        'expansion': 'Base'
+    });
+    this.questionDeck = _.filter(require('cah-cards/pick1'), {
+        'expansion': 'Base'
+    });
 
     //Game Properties
-    this.roomId = ( Math.random() * 100000 ) | 0;
+    this.roomId = (Math.random() * 100000) | 0;
     this.host = socket;
     this.players = {};
     this.hands = {};
     this.scores = {};
     this.submittedCards = new Array();
-    
+
     //Username of the current game master.
     this.gameMaster = "";
-    
+
     this.questionCard = new Object();
     this.setNewQuestionCard();
 
@@ -49,11 +53,9 @@ function Game(socket){
 
 /*** Player Methods ***/
 
-Game.prototype.addPlayer = function(username, socket)
-{
+Game.prototype.addPlayer = function(username, socket) {
     //Make the first person added to the game the initial gameMaster.
-    if(this.gameMaster == "")
-    {
+    if (this.gameMaster == "") {
         this.gameMaster = username;
     }
 
@@ -69,15 +71,13 @@ Game.prototype.addPlayer = function(username, socket)
     this.players[username].join(this.roomId);
 }
 
-Game.prototype.selectNewGameMaster = function()
-{
+Game.prototype.selectNewGameMaster = function() {
     var listOfPlayers = this.getListOfPlayerNames();
     var playerNumber = listOfPlayers.indexOf(this.gameMaster);
     var oldGameMaster = this.gameMaster;
 
     //Runs until it selects a Game Master that wasnt the same as the previous.
-    while(this.gameMaster == oldGameMaster)
-    {
+    while (this.gameMaster == oldGameMaster) {
         //max(exclusive) min(inclusive) --> Math.floor(Math.random() * (max - min) + min);
         playerNumber = Math.floor(Math.random() * listOfPlayers.length);
         this.gameMaster = listOfPlayers[playerNumber];
@@ -85,46 +85,38 @@ Game.prototype.selectNewGameMaster = function()
     console.log("New GameMaster: " + listOfPlayers[playerNumber]);
 }
 
-Game.prototype.getGameMaster = function()
-{
+Game.prototype.getGameMaster = function() {
     return this.players[this.gameMaster];
 }
 
-Game.prototype.getPlayer = function(username)
-{
+Game.prototype.getPlayer = function(username) {
     return this.players[username];
 }
 
-Game.prototype.removePlayer = function(username)
-{
+Game.prototype.removePlayer = function(username) {
     delete this.players[username];
     delete this.hands[username];
     delete this.scores[username];
 }
 
-Game.prototype.getListOfPlayers = function()
-{
+Game.prototype.getListOfPlayers = function() {
     return this.players;
 }
 
-Game.prototype.getListOfPlayerNames = function()
-{
+Game.prototype.getListOfPlayerNames = function() {
     //console.log(Object.keys(this.players));
     return Object.keys(this.players);
 }
 
-Game.prototype.getGameMasterName = function()
-{
+Game.prototype.getGameMasterName = function() {
     return this.gameMaster;
 }
 
-Game.prototype.getHostSocket = function()
-{
+Game.prototype.getHostSocket = function() {
     return this.host;
 }
 
-Game.prototype.getPlayerCount = function()
-{
+Game.prototype.getPlayerCount = function() {
     return Object.keys(this.players).length;
 }
 
@@ -135,56 +127,47 @@ Game.prototype.getPlayerCount = function()
         Look into making sure no redundant cards are picked... (setting the picked cards to undefined in the deck maybe?)
 */
 
-Game.prototype.removeCardFromHand = function(playerName, cardIndex)
-{
+Game.prototype.removeCardFromHand = function(playerName, cardIndex) {
     this.hands[playerName].splice(cardIndex, 1);
 }
 
-Game.prototype.renewQuestionCard = function()
-{
+Game.prototype.renewQuestionCard = function() {
     var newQCard = this.getRandomCardFromQuestionDeck();
     this.questionCard = newQCard;
 }
 
-Game.prototype.getQuestionCard = function(card)
-{
+Game.prototype.getQuestionCard = function(card) {
     return this.questionCard;
 }
 
-Game.prototype.getSubmittedCards = function()
-{
+Game.prototype.getSubmittedCards = function() {
     //Return a list of submitted cards.
     return this.submittedCards;
 }
 
-Game.prototype.addSubmittedCard = function(card)
-{
+Game.prototype.addSubmittedCard = function(card) {
     this.submittedCards.push(card);
 }
 
-Game.prototype.clearSubmittedCards = function()
-{
+Game.prototype.clearSubmittedCards = function() {
     //Source: http://stackoverflow.com/questions/1232040/empty-an-array-in-javascript
-    while(this.submittedCards.length > 0) {
+    while (this.submittedCards.length > 0) {
         this.submittedCards.pop();
     }
 }
 
-Game.prototype.getSubmittedCardsCount = function()
-{
+Game.prototype.getSubmittedCardsCount = function() {
     return this.submittedCards.length;
 }
 
-Game.prototype.setNewQuestionCard = function()
-{
+Game.prototype.setNewQuestionCard = function() {
     //console.log("getting random card");
     //console.log(_.size(this.answerDeck));
     var Card;
 
     keepGoing = true;
 
-    while(keepGoing)
-    {
+    while (keepGoing) {
         //Pick random number within the bounds of the deck.
         var CardNumber = Math.floor(Math.random() * _.size(this.answerDeck));
         //Get a copy of that card.
@@ -194,8 +177,7 @@ Game.prototype.setNewQuestionCard = function()
         this.questionCard = Card;
 
         //Ensure the card picked is not undefined.
-        if(!_.isUndefined(Card))
-        {
+        if (!_.isUndefined(Card)) {
             keepGoing = false;
             return Card;
         }
@@ -203,26 +185,23 @@ Game.prototype.setNewQuestionCard = function()
     }
 }
 
-Game.prototype.getRandomCardFromAnswerDeck = function()
-{
+Game.prototype.getRandomCardFromAnswerDeck = function() {
     //console.log("getting random card");
     //console.log(_.size(this.answerDeck));
     var Card;
 
     keepGoing = true;
 
-    while(keepGoing)
-    {
+    while (keepGoing) {
         //Pick random number within the bounds of the deck.
         var CardNumber = Math.floor(Math.random() * _.size(this.answerDeck));
-        
+
         //Get a copy of that card.
         Card = this.answerDeck[CardNumber];
 
-        
+
         //Ensure the card picked is not undefined.
-        if(!_.isUndefined(Card))
-        {
+        if (!_.isUndefined(Card)) {
             keepGoing = false;
             return Card;
         }
@@ -230,27 +209,22 @@ Game.prototype.getRandomCardFromAnswerDeck = function()
     }
 }
 
-Game.prototype.refillAllPlayersHands = function()
-{
-    for(i=0;i<this.getPlayerCount();i++)
-    {
+Game.prototype.refillAllPlayersHands = function() {
+    for (i = 0; i < this.getPlayerCount(); i++) {
         this.refillPlayersHand(this.getListOfPlayerNames()[i]);
     }
 }
 
 //Ensure the player has at least 7 cards in their hands.
-Game.prototype.refillPlayersHand = function(username)
-{
+Game.prototype.refillPlayersHand = function(username) {
     //Make sure the slot isn't undefined.
-    if(this.hands[username] == undefined)
-    {
+    if (this.hands[username] == undefined) {
         this.hands[username] = new Array();
         //console.error("Undefined hands...Initializing to new array.");
     }
 
     //If the user doesn't have at least 7 cards then get them from the deck.
-    for(j = _.size(this.hands[username]); j < 7; j++)
-    {
+    for (j = _.size(this.hands[username]); j < 7; j++) {
         //console.log("Adding card to the hand..");
         this.hands[username].push(this.getRandomCardFromAnswerDeck());
     }
@@ -259,8 +233,7 @@ Game.prototype.refillPlayersHand = function(username)
 }
 
 //Return the cards the user has in their hand.
-Game.prototype.getPlayersHand = function(username)
-{
+Game.prototype.getPlayersHand = function(username) {
     return this.hands[username];
 }
 
@@ -268,21 +241,17 @@ Game.prototype.getPlayersHand = function(username)
 
 /*** Score Methods ***/
 
-Game.prototype.getPlayerScore = function(username)
-{
+Game.prototype.getPlayerScore = function(username) {
     return this.scores[username];
 }
 
-Game.prototype.getAllScores = function()
-{
+Game.prototype.getAllScores = function() {
     return this.scores;
 }
 
-Game.prototype.addPointToPlayer = function(username)
-{
+Game.prototype.addPointToPlayer = function(username) {
     //If not initialized.. then do so to 0;
-    if(this.scores[username] == undefined)
-    {
+    if (this.scores[username] == undefined) {
         this.scores[username] = 0;
     }
 
