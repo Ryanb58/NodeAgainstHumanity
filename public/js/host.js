@@ -79,8 +79,24 @@ socket.on('list:submittedCards', function(cards)
 //Let everyone know who the winner of the round!
 socket.on('winning:player', function(name){
     //TODO: Make this into a like DIV popup or something.
-    alert(name + ' won this round!');
+    //alert(name + ' won this round!');
+
+    $("#WinnerPopUp").html(name + ' won the round!');
+
+    //Show popup
+    openWinnerPopup();
+
+    //Close popup after 4.5 seconds.
+    setTimeout(closeWinnerPopup, 4000);
 });
+
+function openWinnerPopup(){
+    document.getElementById("WinnerPopUp").style.display = 'block';
+}
+function closeWinnerPopup(){
+    document.getElementById("WinnerPopUp").style.display = 'none';
+}
+
 
 
 
