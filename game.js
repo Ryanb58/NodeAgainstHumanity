@@ -173,6 +173,9 @@ Game.prototype.setNewQuestionCard = function() {
         //Get a copy of that card.
         Card = this.questionDeck[CardNumber];
 
+        //Remove the card from the deck.
+        this.questionDeck.splice(CardNumber+1, CardNumber+1);
+
         //Set the questionCard.
         this.questionCard = Card;
 
@@ -199,6 +202,8 @@ Game.prototype.getRandomCardFromAnswerDeck = function() {
         //Get a copy of that card.
         Card = this.answerDeck[CardNumber];
 
+        //Remove the card from the deck.
+        this.answerDeck.splice(CardNumber+1, CardNumber+1);
 
         //Ensure the card picked is not undefined.
         if (!_.isUndefined(Card)) {
