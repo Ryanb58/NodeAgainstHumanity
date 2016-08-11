@@ -49,5 +49,5 @@ SOFTWARE.
 ## Attributions ##
 
  + Family - for putting up with and loving me.
- + [Tech-FYI](http://tech-fyi.net) - for being a place to put my words.
+ + [My Blog](http://taylorbrazelton.com) - for being a place to put my words.
  + [Cards Against Humanity](http://cardsagainsthumanity.com) - for providing cards and a game mode to entertain people with.
