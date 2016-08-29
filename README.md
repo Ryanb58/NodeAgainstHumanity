@@ -3,7 +3,7 @@
 by [Taylor Brazelton](http://taylorbrazelton.com)
 
 ## Warning ##
-This code has no tests. Even though I know what works, when. Does not mean this code should be used in any production environment. I am a one man team... in college... with a job... and priorities. Use with your own digression. 
+This code has no tests. Even though I know what works, when. Does not mean this code should be used in any production environment. I am a one man team... in college... with a job... and priorities. Use at your own discretion. 
 
 ## Requirements ##
 
